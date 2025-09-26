@@ -2,12 +2,13 @@ import express = require('express');
 
 const app = express();
 app.use(express.json());
-const PORT = process.env.PORT || 3000;
 
+// Rota principal para verificar se o servidor está no ar
 app.get('/', (req: express.Request, res: express.Response) => {
   res.status(200).send('Motor de Regras está no ar! (versão CommonJS)');
 });
 
+// Endpoint para calcular a próxima data
 app.post('/calculate-next-due', (req: express.Request, res: express.Response) => {
     const { event_type, name, application_date } = req.body;
     if (!application_date || typeof application_date !== 'string') {
@@ -28,4 +29,5 @@ app.post('/calculate-next-due', (req: express.Request, res: express.Response) =>
     res.json({ next_due_date: nextDate.toISOString().split('T')[0] });
 });
 
-app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+// Exporta o app para o ambiente serverless da Vercel
+export default app;
