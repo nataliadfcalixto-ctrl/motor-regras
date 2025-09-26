@@ -35,6 +35,6 @@ app.post('/calculate-next-due', (req: Request, res: Response) => {
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
 
 // Rota principal para verificar se o servidor está no ar
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
   res.status(200).send('Motor de Regras está no ar! Pronto para receber chamadas do n8n.');
 });
