@@ -1,15 +1,14 @@
-const express = require('express');
-import { Request, Response } from 'express';
+import express = require('express');
 
 const app = express();
 app.use(express.json());
 const PORT = process.env.PORT || 3000;
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/', (req: express.Request, res: express.Response) => {
   res.status(200).send('Motor de Regras está no ar! (versão CommonJS)');
 });
 
-app.post('/calculate-next-due', (req: Request, res: Response) => {
+app.post('/calculate-next-due', (req: express.Request, res: express.Response) => {
     const { event_type, name, application_date } = req.body;
     if (!application_date || typeof application_date !== 'string') {
         return res.status(400).json({ error: 'application_date é obrigatória e deve ser uma string AAAA-MM-DD.' });
